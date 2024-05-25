@@ -1,0 +1,7 @@
+{
+  "name": "SubTrac",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
