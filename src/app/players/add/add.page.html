@@ -18,7 +18,8 @@
 
     <!-- add other form controls here... -->
 
-    <ion-button expand="full" type="submit" [disabled]="!playerForm.valid">Add Player</ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!playerForm.valid">{{ playerId ? 'Update' : 'Add' }} Player</ion-button>
+    <ion-button expand="full" color="danger" *ngIf="playerId" (click)="onRemove()">Remove Player</ion-button>
     <ion-button expand="full" color="light" (click)="onCancel()">Cancel</ion-button>
   </form>
 </ion-content>

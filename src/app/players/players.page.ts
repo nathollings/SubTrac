@@ -40,6 +40,21 @@ export class PlayersPage implements OnInit {
     });
   }
 
+  async openPlayerOptionsDropdown(playerId: string) {
+    const modal = await this.modalController.create({
+      component: AddPage,
+      componentProps: {
+        playerId
+      }
+    });
+
+    await modal.present();
+
+    modal.onDidDismiss().then(() => {
+      this.getPlayers();
+    });
+  }
+
   removePlayer(playerId: string) {
     this.playerService.deletePlayer(playerId);
   }

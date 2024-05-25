@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { PlayerService } from '../../players.service';
@@ -19,6 +19,9 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class AddPage implements OnInit {
+
+  @Input() playerId: string | undefined;
+
   playerForm: FormGroup = new FormGroup({});
 
   constructor(
@@ -26,6 +29,8 @@ export class AddPage implements OnInit {
     private modalController: ModalController,
     private playerService: PlayerService
   ) { }
+
+
 
   ngOnInit() {
     this.playerForm = this.formBuilder.group({
@@ -36,6 +41,13 @@ export class AddPage implements OnInit {
   onSubmit() {
     if (this.playerForm.valid) {
       this.playerService.addPlayer(this.playerForm.value.name);
+      this.modalController.dismiss();
+    }
+  }
+
+  onRemove() {
+    if (this.playerId) {
+      this.playerService.deletePlayer(this.playerId);
       this.modalController.dismiss();
     }
   }
