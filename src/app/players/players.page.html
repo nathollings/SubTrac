@@ -12,7 +12,21 @@
   </ion-header>
   <ion-list>
     <ion-item *ngFor="let player of players" (click)="openPlayerOptionsDropdown(player.id)" >
-      <pre>{{player | json}}</pre>
+      <!-- <pre>{{player | json}}</pre> -->
+      <!-- name in big -->
+      <ion-label>
+        <h2>
+          {{player.name}}
+          <!-- age -->
+          <span *ngIf="player.age">({{player.age}})</span>
+        </h2>
+        <p>{{ player.dateOfBirth | date: 'MM/dd/yyyy' }}</p>
+        <!-- followed by games total -->
+        <p>{{player.gamesPlayed}} games</p>
+        <p>{{player.goalsScored}} goals</p>
+
+
+      </ion-label>
     </ion-item>
   </ion-list>
 

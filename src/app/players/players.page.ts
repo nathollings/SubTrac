@@ -30,7 +30,8 @@ export class PlayersPage implements OnInit {
 
   async openAddPlayerModal() {
     const modal = await this.modalController.create({
-      component: AddPage
+      component: AddPage,
+      cssClass: 'full height'
     });
 
     await modal.present();

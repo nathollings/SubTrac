@@ -1,0 +1,12 @@
+<div class="football-field">
+  <div class="player" *ngFor="let player of players; let i = index">
+	<div class="player-icon" *ngIf="player.icon">{{ player.icon }}</div>
+  </div>
+</div>
+
+<!-- PLAYERS ICONS  READY TO BE DRAGGED ON -->
+<div class="players-icons">
+  <div class="player-icon" *ngFor="let player of players; let i = index">
+  {{ player.initials }}
+  </div>
+</div>

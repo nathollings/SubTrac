@@ -10,16 +10,44 @@
       <ion-title size="large">Player</ion-title>
     </ion-toolbar>
   </ion-header>
-  <form [formGroup]="playerForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="playerForm" id="form" (ngSubmit)="onSubmit()">
     <ion-item>
       <ion-label>Name</ion-label>
-      <ion-input formControlName="name"></ion-input>
+      <ion-input slot="end" name="name" formControlName="name"></ion-input>
     </ion-item>
 
-    <!-- add other form controls here... -->
+    <ion-item>
+      <ion-label>Date of Birth</ion-label>
+      <ion-datetime-button datetime="datetime"></ion-datetime-button>
 
-    <ion-button expand="full" type="submit" [disabled]="!playerForm.valid">{{ playerId ? 'Update' : 'Add' }} Player</ion-button>
-    <ion-button expand="full" color="danger" *ngIf="playerId" (click)="onRemove()">Remove Player</ion-button>
-    <ion-button expand="full" color="light" (click)="onCancel()">Cancel</ion-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="datetime" displayFormat="MM/DD/YYYY" presentation="date" formControlName="dateOfBirth"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Game Time</ion-label>
+      <ion-input slot="end" type="number" formControlName="gameTime"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Games Played</ion-label>
+      <ion-input slot="end" type="number" formControlName="gamesPlayed"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Goals Scored</ion-label>
+      <ion-input slot="end" type="number" formControlName="goalsScored"></ion-input>
+    </ion-item>
+
   </form>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="full" type="submit" form="form" [disabled]="!playerForm.valid">{{ playerId ? 'Update' : 'Add' }} Player</ion-button>
+    <ion-button expand="full" color="danger" *ngIf="playerId" (click)="onRemove()">Remove Player</ion-button>
+    <ion-button expand="full" color="light" (click)="onCancel()">Cancel</ion-button>
+  </ion-toolbar>
+</ion-footer>
